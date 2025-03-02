@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surat Pengantar RT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            margin: auto;
+            border: 2px solid black;
+        }
+        .header {
+            text-align: center;
+            font-weight: bold;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <p>PEMERINTAH KOTA JAKARTA UTARA</p>
+            <p>KELURAHAN CILINCING – KECAMATAN CILINCING</p>
+            <p>RUKUN TETANGGA (RT) 06 – RUKUN WARGA (RW) 01</p>
+            <h2>SURAT KETERANGAN</h2>
+            <p>Nomor: ......./RT 06-RW 01/....../2025</p>
+        </div>
+        
+        <form id="suratForm">
+            <div class="form-group">
+                <label>Nama:</label>
+                <input type="text" id="nama" required>
+            </div>
+            <div class="form-group">
+                <label>Jenis Kelamin:</label>
+                <select id="jenis_kelamin" required>
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Tempat, Tanggal Lahir:</label>
+                <input type="text" id="ttl" required>
+            </div>
+            <div class="form-group">
+                <label>NIK/Nomor KTP:</label>
+                <input type="text" id="nik" required>
+            </div>
+            <div class="form-group">
+                <label>Alamat:</label>
+                <input type="text" id="alamat" required>
+            </div>
+            <div class="form-group">
+                <label>Pekerjaan:</label>
+                <input type="text" id="pekerjaan" required>
+            </div>
+            <div class="form-group">
+                <label>Keperluan:</label>
+                <textarea id="keperluan" required></textarea>
+            </div>
+            <button type="button" onclick="generateSurat()">Buat Surat</button>
+        </form>
+    </div>
+
+    <div id="hasilSurat" class="container hidden">
+        <p>Yang bertanda tangan di bawah ini Ketua RT 06 – RW 01, menerangkan bahwa:</p>
+        <p>Nama: <b id="hasilNama"></b></p>
+        <p>Jenis Kelamin: <b id="hasilJK"></b></p>
+        <p>Tempat, Tanggal Lahir: <b id="hasilTTL"></b></p>
+        <p>NIK/Nomor KTP: <b id="hasilNIK"></b></p>
+        <p>Alamat: <b id="hasilAlamat"></b></p>
+        <p>Pekerjaan: <b id="hasilPekerjaan"></b></p>
+        <p>adalah benar-benar warga RT 06 – RW 01 yang bermaksud memohon/mengurus <b id="hasilKeperluan"></b>.</p>
+        <p>Demikian surat ini dibuat untuk dipergunakan sebagaimana mestinya.</p>
+        <p>Cilincing, ............ 2025</p>
+        <p>Ketua RT 06 – RW 01</p>
+        <br><br>
+        <p><b>Ulfian Syahputra</b></p>
+        <button onclick="printSurat()">Cetak Surat</button>
+    </div>
+
+    <script>
+        function generateSurat() {
+            document.getElementById("hasilNama").innerText = document.getElementById("nama").value;
+            document.getElementById("hasilJK").innerText = document.getElementById("jenis_kelamin").value;
+            document.getElementById("hasilTTL").innerText = document.getElementById("ttl").value;
+            document.getElementById("hasilNIK").innerText = document.getElementById("nik").value;
+            document.getElementById("hasilAlamat").innerText = document.getElementById("alamat").value;
+            document.getElementById("hasilPekerjaan").innerText = document.getElementById("pekerjaan").value;
+            document.getElementById("hasilKeperluan").innerText = document.getElementById("keperluan").value;
+            
+            document.getElementById("suratForm").classList.add("hidden");
+            document.getElementById("hasilSurat").classList.remove("hidden");
+        }
+        
+        function printSurat() {
+            window.print();
+        }
+    </script>
+</body>
+</html>
